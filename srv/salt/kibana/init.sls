@@ -32,14 +32,7 @@ kibana.service:
     - mode: 644
     - source: salt://kibana/kibana.yml
     - require:
-      - cmd: get-kibana 
-
-/etc/ssl/kibana.key:
-  file.managed:
-    - user: root
-    - group: root
-    - mode: 644
-    - contents_pillar: sslkeys:kibana-key
+      - cmd: get-kibana
 
 /etc/ssl/kibana.crt:
   file.managed:
