@@ -1,5 +1,5 @@
 include:
-  - common
+  - logstash.common
 
 logstash-forwarder-repo:
   pkgrepo.managed:

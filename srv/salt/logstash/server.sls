@@ -1,5 +1,5 @@
 include:
-  - common
+  - logstash.common
 
 logstash-repo:
   pkgrepo.managed:
@@ -30,6 +30,13 @@ logstash:
       - mode
     - requires:
       pkg: logstash
+
+/etc/ssl/logstash-forwarder.key:
+  file.managed:
+    - user: logstash
+    - group: logstash
+    - mode: 644
+    - contents_pillar: sslkeys:logstash-forwarder-key
 
 /etc/logstash/conf.d/01-lumberjack-input.conf:
   file.managed:
