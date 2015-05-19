@@ -1,5 +1,8 @@
 base:
+  '*':
+    - logstash.forwarder
+
   '*logger':
     - elasticsearch
-    - logstash
+    - logstash.server
     - kibana
