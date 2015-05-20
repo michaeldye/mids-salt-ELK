@@ -44,3 +44,15 @@ logstash:
     - group: logstash
     - mode: 644
     - source: salt://logstash/01-lumberjack-input.conf
+
+logstash.service:
+  service.running:
+    - name: logstash
+    - enable: True
+    - require:
+        - pkg: logstash
+    - watch:
+        - file: /etc/logstash/conf.d/01-lumberjack-input.conf
+        - file: /etc/ssl/logstash-forwarder.key
+        - file: /etc/logstash
+        - file: /etc/hosts

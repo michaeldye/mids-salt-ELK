@@ -17,14 +17,6 @@ get-kibana:
     - mode: 644
     - source: salt://kibana/kibana4.service
 
-kibana.service:
-  service.running:
-    - name: kibana4
-    - enable: True
-    - reload: True
-    - watch:
-      - file: /etc/systemd/system/kibana4.service
-
 /usr/local/kibana/config/kibana.yml:
   file.managed:
     - user: root
@@ -40,3 +32,12 @@ kibana.service:
     - group: root
     - mode: 644
     - source: salt://kibana/kibana.crt
+
+kibana.service:
+  service.running:
+    - name: kibana4
+    - enable: True
+    - watch:
+      - file: /etc/systemd/system/kibana4.service
+      - file: /etc/ssl/kibana.crt
+      - file: /usr/local/kibana/config/kibana.yml
