@@ -38,6 +38,14 @@ logstash:
     - mode: 644
     - contents_pillar: sslkeys:logstash-forwarder-key
 
+
+/etc/logstash/conf.d/10-filters.conf:
+  file.managed:
+    - user: logstash
+    - group: logstash
+    - mode: 644
+    - source: salt://logstash/10-filters.conf
+
 /etc/logstash/conf.d/01-lumberjack-input.conf:
   file.managed:
     - user: logstash
@@ -52,6 +60,7 @@ logstash.service:
     - require:
         - pkg: logstash
     - watch:
+        - file: /etc/logstash/conf.d/10-filters.conf
         - file: /etc/logstash/conf.d/01-lumberjack-input.conf
         - file: /etc/ssl/logstash-forwarder.key
         - file: /etc/logstash

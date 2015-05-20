@@ -12,13 +12,6 @@ logstash-forwarder:
   pkg.installed:
     - fromrepo: logstash-forwarder-repo
 
-/etc/logstash/conf.d/10-syslog.conf:
-  file.managed:
-    - user: logstash
-    - group: logstash
-    - mode: 644
-    - source: salt://logstash/10-syslog.conf
-
 /etc/logstash/conf.d/30-lumberjack-output.conf:
   file.managed:
     - user: logstash
@@ -42,6 +35,5 @@ logstash-forwarder.service:
         - service: logstash.service
     - watch:
         - service: logstash.service
-        - file: /etc/logstash/conf.d/10-syslog.conf
         - file: /etc/logstash/conf.d/30-lumberjack-output.conf
         - file: /etc/logstash-forwarder.conf
