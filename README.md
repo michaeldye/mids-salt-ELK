@@ -4,7 +4,7 @@
 
 Salt state and pillar data to set up a single-box ELK stack. To use this, you'll need to have a saltmaster (ask Mike if you need help with this).
 
-You'll also need to generate an SSL certificate for the logstash forwarder and paste the content into `/srv/pillar/ssl.sls` (be careful of YAML formatting in that file). Make sure to set the CN to 'elk.mids'. Copy the matching cert into `/srv/salt/logstash/`.
+You'll also need to generate an SSL certificate for the logstash forwarder and paste the content into `srv/pillar/ssl.sls` (be careful of YAML formatting in that file). Make sure to set the CN to 'elk.mids'. Copy the matching cert into `srv/salt/logstash/`.
 
 Your openssl key and cert generation commands may look like this:
 

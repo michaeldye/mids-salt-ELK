@@ -26,18 +26,10 @@ get-kibana:
     - require:
       - cmd: get-kibana
 
-/etc/ssl/kibana.crt:
-  file.managed:
-    - user: root
-    - group: root
-    - mode: 644
-    - source: salt://kibana/kibana.crt
-
 kibana.service:
   service.running:
     - name: kibana4
     - enable: True
     - watch:
       - file: /etc/systemd/system/kibana4.service
-      - file: /etc/ssl/kibana.crt
       - file: /usr/local/kibana/config/kibana.yml
